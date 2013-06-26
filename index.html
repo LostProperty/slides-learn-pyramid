@@ -115,7 +115,7 @@
 				<section>
 					<h2>I was living a happy life</h2>
 					<p> and had my own swiss army knife as a toolkit </p>
-					<img src="http://ecx.images-amazon.com/images/I/61ABQA%2Bgt8S._SL1063_.jpg"/>
+					<img  class="fragment" src="http://ecx.images-amazon.com/images/I/61ABQA%2Bgt8S._SL1063_.jpg"/>
 					<aside class="notes">
 						Notes..
 					</aside>
@@ -138,9 +138,9 @@
 				</section>
 				<section>
 					<ul>
-						<li>Modular and Agnostic</li>
-						<li>Flexible and Extensible</li>
-						<li>Not opiniated</li>
+						<li>Modular </li>
+						<li>Flexible</li>
+						<li>Agnostic, Not opiniated</li>
 						<li>Extensible</li>
 						<li>Fast</li>
 						<li>Full Control</li>
@@ -174,7 +174,8 @@ def hello_world(request):
     return Response('Hello world!')
 
 if __name__ == '__main__':
-    config = Configurator() config.add_route('home', '/') 
+    config = Configurator() 
+    config.add_route('home', '/') 
     config.add_view(hello_world, route_name='home') 
     app = config.make_wsgi_app()
     server = make_server('0.0.0.0', 8080, app)
@@ -197,7 +198,8 @@ def hello_world(request):
     return Response('Hello world!')
 
 if __name__ == '__main__':
-    config = Configurator() config.add_route('home', '/') 
+    config = Configurator() 
+    config.add_route('home', '/') 
     config.scan()
     #run the app
     app = config.make_wsgi_app()
@@ -404,7 +406,7 @@ config.add_response_adapter(string_response_adapter, str)
 				</section>
 				<section>
 					<h2>Events</h2>
-					<h3>subscribe to loads of events : NewResponse,ApplicationCreated </h3>
+					<h3>subscribe to loads of events : NewResponse, ApplicationCreated </h3>
 <pre><code data-trim>
 from pyramid.events import subscriber
 from pyramid.events import BeforeRender
@@ -460,8 +462,9 @@ request.add_finished_callback(log_callback)
 				</section>
 				<section>
 					<h2>Form</h2>
+					<p>WTForms, Deform with colander, WTForms-Alchemy , simple_form</p>
 					<aside class="notes">
-						WTForms, Deform with colander, WTForms-Alchemy , simple_form
+						WTForms, Deform (with colander), WTForms-Alchemy , pyramid_simpleform (with Formencode)
 					</aside>
 				</section>
 				<section>
@@ -478,8 +481,8 @@ request.add_finished_callback(log_callback)
 				</section>
 				<section>
 					<h2>Config</h2>
-					<p> Imperative configuration or ini file for non dev colleagues or even ZCML(XML)  </p> 
-					<p> ini can support to serve multi wsgi app (paste legacy) </p>
+					<p> Imperative configuration or .ini file for non dev colleagues or even ZCML(XML)  </p> 
+					<p> .ini file can support to serve multi wsgi app (paste legacy) </p>
 
 					<aside class="notes">
 						
@@ -493,6 +496,17 @@ request.add_finished_callback(log_callback)
 					</aside>
 				</section>
 				<!-- Example of nested vertical slides -->
+				<section>
+					<h2>Interrested in Pyramid?</h2>
+					<h3> Have a chat.</h3>
+					<h3>Check the doc, tutorial. </h3>
+					<h3>Come to the Pyramid London Meetup.</h3>
+
+
+					<aside class="notes">
+						
+					</aside>
+				</section>
 
 				<section>
 					<h2>A Final Word</h2>
@@ -522,6 +536,7 @@ request.add_finished_callback(log_callback)
 				history: true,
 				center: true,
 				width: 1200,
+
 
 
 				theme: 'lostproperty', // available themes are in /css/theme

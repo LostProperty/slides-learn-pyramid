@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="en">
-
 	<head>
 		<meta charset="utf-8">
 
-		<title>Learn something new - Quick look into an other Python web framework</title>
+		<title>Learn something new - Quick look into another Python web framework</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Rach Belaid">
@@ -32,7 +31,7 @@
 
 	<body>
 
-         
+
         <img class="logo" src="http://lostpropertyhq.com/static/images/logo.png"/>
 
 		<span class="website"><a href="http://lostpropertyhq.com">lostpropertyhq.com <a></span>
@@ -69,7 +68,7 @@
 					<h2>I may be harsh!</h2>
 					<p> ... but I mean well </p>
 					<h3>
-						Django is a great framework!</h3> 
+						Django is a great framework!</h3>
 					<h3> It allowed me to make my living from Python,</h3>
 					<h2> a language that I ❤
 					</h3>
@@ -87,7 +86,7 @@
 						<li>Due to frustrations</li>
 						<li>To extend your mind and toolbelt with new tools</li>
 						<li>To come back with a fresh eyes</li>
-					</ul>			
+					</ul>
 					<aside class="notes">
 						Notes..
 					</aside>
@@ -101,7 +100,7 @@
 						<li>TurboGears</li>
 						<li>Grok</li>
 						<li>Zope</li>
-						
+
 					</ul>
 					<aside class="notes">
 						Notes..
@@ -146,7 +145,7 @@
 						<li>Fast</li>
 						<li>Full Control</li>
 						<li>For small and big webapps</li>
-					</ul>			
+					</ul>
 					<aside class="notes">
 						Notes..
 					</aside>
@@ -167,7 +166,7 @@
 				<section>
 					<h2>Simple example</h2>
 <pre><code data-trim>
-from wsgiref.simple_server import make_server 
+from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.response import Response
 
@@ -175,9 +174,9 @@ def hello_world(request):
     return Response('Hello world!')
 
 if __name__ == '__main__':
-    config = Configurator() 
-    config.add_route('home', '/') 
-    config.add_view(hello_world, route_name='home') 
+    config = Configurator()
+    config.add_route('home', '/')
+    config.add_view(hello_world, route_name='home')
     app = config.make_wsgi_app()
     server = make_server('0.0.0.0', 8080, app)
     server.serve_forever()
@@ -189,18 +188,18 @@ if __name__ == '__main__':
 				<section>
 					<h2>Same example but another way</h2>
 <pre><code data-trim>
-from wsgiref.simple_server import make_server 
+from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.view import view_config
 
-@view_config(route_name='home') 
+@view_config(route_name='home')
 def hello_world(request):
     return Response('Hello world!')
 
 if __name__ == '__main__':
-    config = Configurator() 
-    config.add_route('home', '/') 
+    config = Configurator()
+    config.add_route('home', '/')
     config.scan()
     #run the app
     app = config.make_wsgi_app()
@@ -216,7 +215,7 @@ if __name__ == '__main__':
 					<p>with pyramid there is more than one way to do things!!!</p>
 					<h3>I want my tools to bend to my needs and not me to them.</h3>
 					<aside class="notes">
-						
+
 					</aside>
 				</section>
 				<section>
@@ -244,17 +243,17 @@ if __name__ == '__main__':
 				<section>
 					<h2>Routing Example via Method</h2>
 <pre><code data-trim>
-@view_config(route_name='test', request_method='GET') 
+@view_config(route_name='test', request_method='GET')
 def hello_world(request):
     return Response('Hello world!')
 
-@view_config(route_name='test', request_method='POST') 
+@view_config(route_name='test', request_method='POST')
 def thanks_you(request):
     return Response('Thanks you')
 
 if __name__ == '__main__':
-   config = Configurator() 
-   config.add_route('test', '/test') 
+   config = Configurator()
+   config.add_route('test', '/test')
    config.scan()
 </code></pre>
 					<aside class="notes">
@@ -264,20 +263,20 @@ if __name__ == '__main__':
 				<section>
 					<h2>Routing Example with param</h2>
 <pre><code data-trim>
-@view_config(route_name='action', match_param='action=hello') 
+@view_config(route_name='action', match_param='action=hello')
 def hello_view(request):
     return Response('Hello')
 
-@view_config(route_name='action', match_param='action=bye') 
+@view_config(route_name='action', match_param='action=bye')
 def bye_view(request):
     return Response('Bye Bye')
 
-@view_config(route_name='action', match_param='action') 
+@view_config(route_name='action', match_param='action')
 def bye_view(request):
     return Response('Let’s continue')
-    
+
 if __name__ == '__main__':
-config = Configurator() 
+config = Configurator()
 config.add_route('action', '/{action:\w+}') config.scan()
 </code></pre>
 					<aside class="notes">
@@ -293,12 +292,12 @@ def useless_predicate(info, request):
 	return today.day == 29 && today.month == 2
 
 @view_config(route_name='home', custom_predicate=useless_predicate)
-def useless_view(request): 
+def useless_view(request):
 	return Response('Leap year')
 
 if __name__ == '__main__':
-    config = Configurator() 
-    config.add_route('home', '/') 
+    config = Configurator()
+    config.add_route('home', '/')
     config.scan()
 </code></pre>
 					<aside class="notes">
@@ -319,7 +318,7 @@ class Test(object):
 
     @view_config(route_name='test')
     def test(self):
-        return Response('ok') 
+        return Response('ok')
 
 @view_config(route_name='test')
 class Test(object):
@@ -340,7 +339,7 @@ class Test(object):
 					<h2>You can choose but the choice is easy.</h2>
 					<aside class="notes">
 						If there is a piece of software which amazed me in my dev life.
-						It's SQLAlchemy 
+						It's SQLAlchemy
 					</aside>
 				</section>
 				<section>
@@ -349,7 +348,7 @@ class Test(object):
 					<p>Finally an ORM that allows you to write better queries.</p>
 					<aside class="notes">
 						If there is a piece of software which amazed me in my dev life.
-						It's SQLAlchemy 
+						It's SQLAlchemy
 					</aside>
 				</section>
 				<section>
@@ -358,7 +357,7 @@ class Test(object):
 						<li>Mako</li>
 						<li>Chameleon</li>
 						<li>Jinja2</li>
-					</ul>	
+					</ul>
 					<p> ... and they are fast.</p>
 					<aside class="notes">
 						They all have their feature and advantages
@@ -453,7 +452,7 @@ request.add_finished_callback(log_callback)
 						So much power
 					</aside>
 				</section>
-				
+
 				<section>
 					<h2>Validation</h2>
 					<h3>Colander, FormEncode</h3>
@@ -482,18 +481,18 @@ request.add_finished_callback(log_callback)
 				</section>
 				<section>
 					<h2>Config</h2>
-					<p> Imperative configuration or .ini file for non dev colleagues or even ZCML(XML)  </p> 
+					<p> Imperative configuration or .ini file for non dev colleagues or even ZCML(XML)  </p>
 					<p> .ini file can support to serve multi wsgi app (paste legacy) </p>
 
 					<aside class="notes">
-						
+
 					</aside>
 				</section>
 				<section>
 					<h2>Python Package friendly</h2>
 					<h3>Application ready to package (egg, wheel, deb,..) or to distribute</h3>
 					<aside class="notes">
-						
+
 					</aside>
 				</section>
 				<!-- Example of nested vertical slides -->
@@ -505,7 +504,7 @@ request.add_finished_callback(log_callback)
 
 
 					<aside class="notes">
-						
+
 					</aside>
 				</section>
 
@@ -515,10 +514,10 @@ request.add_finished_callback(log_callback)
 <img src="http://i.imgur.com/Fj31vaF.jpg" />
 
 					<aside class="notes">
-						
+
 					</aside>
 				</section>
-				
+
 
 			</div>
 
